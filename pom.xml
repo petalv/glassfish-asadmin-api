@@ -14,7 +14,7 @@
     <description>
         Java API for management of GlassFish servers.
     </description>
-    <url>http://kenai.com/projects/glassfish-script</url>
+    <url>https://github.com/patbos/glassfish-asadmin-api</url>
     <inceptionYear>2010</inceptionYear>
     <licenses>
         <license>
@@ -45,7 +45,7 @@
 
 
     <scm>
-        <developerConnection>scm:svn:https://kenai.com/svn/glassfish-script~gf-install/trunk</developerConnection>
+        <developerConnection>scm:git:https://github.com/patbos/glassfish-asadmin-api.git</developerConnection>
     </scm>
 
     <properties>
