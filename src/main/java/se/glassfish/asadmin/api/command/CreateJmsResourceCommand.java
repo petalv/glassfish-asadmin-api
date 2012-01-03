@@ -124,7 +124,12 @@ CLI014 restype is a required option.
             case javax_jms_ConnectionFactory:
                 addParam("restype", "javax.jms.ConnectionFactory");
                 break;
-
+            case javax_jms_QueueConnectionFactory:
+                addParam("restype", "javax.jms.QueueConnectionFactory");
+                break;
+            case javax_jms_TopicConnectionFactory:
+                addParam("restype", "javax.jms.TopicConnectionFactory");
+                break;
         }
         addArg(jndi_name);
         return executeCommand().getReturnCode();

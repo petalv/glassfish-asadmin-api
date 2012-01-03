@@ -20,5 +20,6 @@
 package se.glassfish.asadmin.api.command;
 
 public enum JmsResourceType {
-    javax_jms_Queue, javax_jms_Topic, javax_jms_ConnectionFactory
+    javax_jms_Queue, javax_jms_Topic, javax_jms_ConnectionFactory, javax_jms_QueueConnectionFactory, javax_jms_TopicConnectionFactory
+
 }

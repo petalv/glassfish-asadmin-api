@@ -243,8 +243,22 @@ public class Asadmin {
                 validationtable, validationclassname, failconnection, validateatmostonceperiod, properties, restype,
                 isolationlevel);
         return command.execute();
-
     }
+
+    public int createJdbcConnectionPool(String name, String datasourceclassname,
+                                        int steadypoolsize, int maxpoolsize, boolean isconnectvalidatereq,
+                                        JdbcValidationMethod validationMethod, String validationtable,
+                                        String validationclassname,
+                                        boolean failconnection, int validateatmostonceperiod, Properties properties,
+                                        JdbcResourceType restype, JdbcIsolationLevel isolationlevel, boolean allownoncomponentcallers)
+            throws CommandException {
+        CreateJdbcConnectionPoolCommand command = new CreateJdbcConnectionPoolCommand(environment, name,
+                datasourceclassname, steadypoolsize, maxpoolsize, isconnectvalidatereq, validationMethod,
+                validationtable, validationclassname, failconnection, validateatmostonceperiod, properties, restype,
+                isolationlevel, allownoncomponentcallers);
+        return command.execute();
+    }
+
 
     public int deleteJdbcConnectionPool(String name) throws CommandException {
         return new DeleteJdbcConnectionPoolCommand(environment, name).execute();
@@ -318,6 +332,11 @@ public class Asadmin {
                 description, props).execute();
     }
 
+    public void createJmsConnectionFactory(String jndiname, JmsResourceType resourceType) throws CommandException {
+        new CreateJmsResourceCommand(environment, DEFAULT_TARGET, resourceType, jndiname).execute();
+    }
+
+
     public void createJmsConnectionFactory(String jndiname, String description, Properties properties) throws
             CommandException {
         new CreateJmsResourceCommand(environment, DEFAULT_TARGET, JmsResourceType.javax_jms_ConnectionFactory, jndiname,
@@ -330,8 +349,17 @@ public class Asadmin {
         Properties queueProps = new Properties();
         queueProps.setProperty("Name", name);
         new CreateJmsResourceCommand(environment, DEFAULT_TARGET, JmsResourceType.javax_jms_Queue, jndiname,
-                description, queueProps);
+                description, queueProps).execute();
     }
+
+    public void createJmsTopic(String name, String jndiname, String description) throws CommandException {
+        new CreateJmsDestCommand(environment, JmsDestType.TOPIC, name, null).execute();
+        Properties queueProps = new Properties();
+        queueProps.setProperty("Name", name);
+        new CreateJmsResourceCommand(environment, DEFAULT_TARGET, JmsResourceType.javax_jms_Topic, jndiname,
+                description, queueProps).execute();
+    }
+
 
     public void createJmsQueue(String name, String jndiname, Properties jmsDestinationProperties, String description,
                                Properties jmsResourceProperties) throws CommandException {

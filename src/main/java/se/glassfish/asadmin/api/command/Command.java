@@ -138,10 +138,13 @@ public abstract class Command<E> {
             Set<String> keys = params.keySet();
             for (String key : keys) {
                 Object value = params.get(key);
+                if (value == null) {
+                    throw new CommandException("Param " + key + " has a null value!");
+                }
                 if (key.endsWith("=")) {
                     commandLine.add(key + value);
                 } else {
-
+                    
                     commandLine.add(key);
                     //commandString.append(" ");
                     if (value instanceof String) {
